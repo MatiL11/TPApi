@@ -1,0 +1,55 @@
+@baseUrl = http://localhost:5031/api/productos
+
+### Listar todos los productos
+GET {{baseUrl}}
+
+### Obtener un producto por Id
+GET {{baseUrl}}/1
+
+### Obtener un producto inexistente (404 - Result con error NotFound)
+GET {{baseUrl}}/999
+
+### Crear un producto (201)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "nombre": "Auriculares",
+  "descripcion": "Bluetooth 5.3, cancelación de ruido",
+  "precio": 45000,
+  "stock": 20
+}
+
+### Crear con datos inválidos (400 - Result con error Validation)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "nombre": "Parlante",
+  "precio": 0,
+  "stock": 5
+}
+
+### Crear con nombre repetido (409 - Result con error Conflict)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "nombre": "teclado mecánico",
+  "precio": 1000,
+  "stock": 1
+}
+
+### Actualizar un producto (200)
+PUT {{baseUrl}}/1
+Content-Type: application/json
+
+{
+  "nombre": "Teclado mecánico RGB",
+  "descripcion": "Switch red, layout español, retroiluminado",
+  "precio": 92000,
+  "stock": 12
+}
+
+### Eliminar un producto (204)
+DELETE {{baseUrl}}/2
